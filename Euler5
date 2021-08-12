@@ -1,0 +1,23 @@
+"""
+2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+"""
+def func():
+    n=2520
+    while True:
+        n+=10
+        if n%3!=0:
+            n+=10
+            continue
+        found=True
+        for i in range(11,21):
+            if n%i!=0:
+                found=False
+                break
+        if found:
+            return n
+            
+        
+
+print(func())
