@@ -7,7 +7,40 @@ and the square of the sum.
 import time
 from math import sqrt
 
-def func():
+
+def bruteforce():
+    #perform naive search
+    nthprimeTarget=10001
+    primes=2
+    i=1
+    while primes<nthprimeTarget:
+        i+=1
+        if i==2:
+           primes+=1
+        else:
+            for j in range(2,i):
+                if i%j==0:
+                    break
+            else:
+                primes+=1
+
+    print(i)
+
+def bruteforceoddnumbers():
+    nthprimeTarget=10001
+    primes=3
+    i=1
+    while primes<nthprimeTarget:
+        i+=2
+        for j in range(3,i,2):
+            if i%j==0:
+                break
+        else:
+            primes+=1
+    print(i)
+
+
+def primecheck():
     nthprimeTarget=10001
     primes={3:True, 5:True} #not adding 2 so as not to loop over it
     nthprime=3
@@ -28,6 +61,69 @@ def func():
 
     print(i)
 
+
+def primecheckx():
+    nthprimeTarget=10001
+    primes=[3,5] #not adding 2 so as not to loop over it
+    nthprime=3 #starting with 2,3 and 5
+    i=5
+
+    while nthprime<nthprimeTarget:
+        i+=2
+        sqrti=sqrt(i)
+        j=0
+        while j<len(primes):
+            if i%primes[j]==0:
+                break
+            else:
+                j+=1
+        else:
+            primes.append(i)
+            nthprime+=1
+            
+    print(i)
+
+
+def primecheck2():
+    nthprimeTarget=10001
+    primes=[3,5] #not adding 2 so as not to loop over it
+    nthprime=3 #starting with 2,3 and 5
+    i=5
+
+    while nthprime<nthprimeTarget:
+        i+=2
+        sqrti=sqrt(i)
+        j=0
+        while primes[j]<=sqrti:
+            if i%primes[j]==0:
+                break
+            else:
+                j+=1
+        else:
+            primes.append(i)
+            nthprime+=1
+            
+    print(i)
+
+
+
+print('checking all numbers')
 start = time.process_time()
-func()
+bruteforce()
+print(time.process_time() - start)
+
+print('checking every other number')
+start = time.process_time()
+bruteforceoddnumbers()
+print(time.process_time() - start)
+
+print('checking only primes')
+start = time.process_time()
+primecheck()   
+print(time.process_time() - start)
+
+
+print('checking only primes less than squareroot')
+start = time.process_time()
+primecheck2()   
 print(time.process_time() - start)
