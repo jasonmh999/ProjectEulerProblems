@@ -1,0 +1,20 @@
+"""
+Find the difference between
+the sum of the squares of the first one hundred natural numbers
+and the square of the sum.
+
+"""
+
+sumsquares=0
+squaresum=0
+
+for i in range(1, 101): #I fell for the off by one with just doing '100'
+    sumsquares+=i**2
+    squaresum+=i
+
+squaresum**=2
+
+print(f"{sumsquares=}")
+print(f"{squaresum=}")
+print(f"{squaresum-sumsquares=}")
+
