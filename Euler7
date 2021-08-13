@@ -1,0 +1,33 @@
+"""
+Find the difference between
+the sum of the squares of the first one hundred natural numbers
+and the square of the sum.
+
+"""
+import time
+from math import sqrt
+
+def func():
+    nthprimeTarget=10001
+    primes={3:True, 5:True} #not adding 2 so as not to loop over it
+    nthprime=3
+    i=5
+
+    while nthprime<nthprimeTarget:
+        i+=2
+        #possible optimization:
+        #don't need to check primes greater than sqrt of i
+        for prime in primes:
+            if i%prime==0:
+                break
+        else:
+            #not found
+            primes[i]=True
+            nthprime+=1
+
+
+    print(i)
+
+start = time.process_time()
+func()
+print(time.process_time() - start)
