@@ -1,0 +1,54 @@
+"""
+What is the value of the first triangle number
+to have over five hundred divisors?
+
+"""
+
+def SieveOfEratosthenes(target=30):
+    primes = [True for _ in range(target + 1)]
+    i=0
+    primes[0]=False
+    primes[1]=False
+    for i in range(2,int(target**0.5)+1):
+        if primes[i]:
+            for j in range(i*2, target+1, i):
+                primes[j]=False
+    return [x for x in range(target+1) if primes[x]]
+
+
+def factors(n, primes):
+    primefactors=[]
+    sqrtlimit=n**0.5+1
+    factors=1
+
+    for prime in primes:
+        #limit which primes to check
+        if prime>sqrtlimit:
+            break
+        if n%prime==0:
+            power=1
+            n=n//prime
+            while n%prime==0:
+                power+=1
+                n=n//prime
+            #don't need the factors, just need the number of factors
+            #primefactors.append((prime,power))
+            factors*=(power+1)
+        if n==1:
+            break
+                
+    return factors
+
+def triangularNumber(n):
+    return n*(n+1)//2
+
+i=10000
+primes=SieveOfEratosthenes(triangularNumber(i))
+while True:
+    test=triangularNumber(i)
+    numoffactors=factors(test, primes)
+    if numoffactors>500:
+        print(test,numoffactors,'***')
+        break
+    i+=1
+
