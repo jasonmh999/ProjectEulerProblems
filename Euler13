@@ -107,8 +107,23 @@ numbers="""37107287533902102798797998220837590246510135740250
 #formatting grid from https://euler.beerbaronbill.com/en/latest/solutions/11.html
 numbers = [row.strip() for row in numbers.split("\n")]
 
-sum=0
-for number in numbers:
-    sum+=int(number)
+def bruteforce():
 
-print(str(sum)[:10])
+    sum=0
+    for number in numbers:
+        sum+=int(number)
+
+    print(str(sum)[:10])
+    return int(str(sum)[:10])
+
+def improved():
+    sum=0
+    for number in numbers:
+        sum+=int(number[:11])
+
+    print(str(sum)[:10])
+    return int(str(sum)[:10])
+
+x=bruteforce()
+y=improved()
+print(x==y)
